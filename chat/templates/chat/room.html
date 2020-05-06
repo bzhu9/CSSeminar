@@ -11,7 +11,7 @@
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
-        var roomName = {{ room_name_json }};
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         var protocol = '';
         if (window.location.protocol === 'https:') {
