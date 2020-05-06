@@ -1,1 +1,1 @@
-web: daphne channelsTutorial:application --port $PORT --bind 0.0.0.0
+web: daphne channelsTutorial.asgi:application --port $PORT --bind 0.0.0.0
