@@ -82,6 +82,13 @@ CHANNEL_LAYERS = {
     },
 }
 
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
