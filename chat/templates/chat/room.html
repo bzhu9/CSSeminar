@@ -10,7 +10,7 @@
     <p id="active-users">0</p>
     <br>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
+    <input id="chat-message-input" type="text" size="100">
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
@@ -39,7 +39,7 @@
         };
 
         chatSocket.onopen = function(e) {
-            documet.querySelctor('#active-users').value+=1;
+            document.querySelctor('#active-users').value+=1;
         };
 
         document.querySelector('#chat-message-input').focus();
