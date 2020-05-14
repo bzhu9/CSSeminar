@@ -34,12 +34,14 @@
         };
 
         chatSocket.onclose = function(e) {
-            document.querySelector('#active-users').value-=1;
+            var currentUsers = parseInt(document.getElementById("active-users").innerHTML)-1;
+            document.getElementById("active-users").innerHTML=currentUsers;
             console.error('Chat socket closed unexpectedly');
         };
 
         chatSocket.onopen = function(e) {
-            document.querySelector('#active-users').value+=1;
+            var currentUsers = parseInt(document.getElementById("active-users").innerHTML)+1;
+            document.getElementById("active-users").innerHTML=currentUsers;
         };
 
         document.querySelector('#chat-message-input').focus();
