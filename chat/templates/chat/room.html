@@ -7,7 +7,7 @@
 </head>
 <body>
     <p>Users online: </p>
-    <p id="active-users">0</p>
+    <p id="occupants">0</p>
     <br>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100">
@@ -29,19 +29,18 @@
 
         chatSocket.onmessage = function(e) {
             var data = JSON.parse(e.data);
-            var message = data['message'];
-            document.querySelector('#chat-log').value += (message + '\n');
+            if (data.msg_type=="roomCount"){
+                var count = data['count'];
+                document.getElementById("occupants").innerHTML = count;
+            }
+            else if (data.msg_type=="message"){
+                var message = data['message'];
+                document.querySelector('#chat-log').value += (message + '\n');
+            }
         };
 
         chatSocket.onclose = function(e) {
-            var currentUsers = parseInt(document.getElementById("active-users").innerHTML)-1;
-            document.getElementById("active-users").innerHTML=currentUsers;
             console.error('Chat socket closed unexpectedly');
-        };
-
-        chatSocket.onopen = function(e) {
-            var currentUsers = parseInt(document.getElementById("active-users").innerHTML)+1;
-            document.getElementById("active-users").innerHTML=currentUsers;
         };
 
         document.querySelector('#chat-message-input').focus();

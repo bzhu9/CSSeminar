@@ -4,24 +4,46 @@
 <head>
     <meta charset="utf-8"/>
     <title>Chat Rooms</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
-    What chat room would you like to enter?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
-
+    <ul class="rooms">
+        {% for room in rooms %}
+            <li class="room-link" data-room-id="{{ room.id }}"><a href="/chat/{{room}}">Go to {{ room }}</a></li>
+        {% empty %}
+            <p class="empty">No existing chat rooms</p>
+        {% endfor %}
+    </ul>
+    <p>Create a room:</p>
+    <br>
+    <input id="room-name-input" type="text" size="100">
+    
+    <input id="page-submit" type="button" value="Enter">
     <script>
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#room-name-submit').click();
+                document.querySelector('#page-submit').click();
             }
         };
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
-        };
+        // document.querySelector('#page-submit').onclick = function(e) {
+        //     var roomName = document.querySelector('#room-name-input').value;
+        //     window.location.pathname = '/chat/' + roomName + '/';
+        // };
+        $(function () {
+            $('#page-submit').click(function () {
+                $.ajax({
+                   url: '/chat/create_room/',
+                   data: { 'room_name': $("#room-name-input").val() },
+                   type: 'get',
+                   cache: false,
+                   success: function (data) {
+                      window.location.pathname = '/chat/' + $("#room-name-input").val() + '/';
+                   }
+                });
+            });
+        });
     </script>
 </body>
 </html>
