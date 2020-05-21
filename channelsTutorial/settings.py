@@ -1,4 +1,4 @@
-import django_heroku
+import django_heroku, dj_database_url
 """
 Django settings for channelsTutorial project.
 
@@ -99,6 +99,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
