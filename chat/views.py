@@ -16,7 +16,10 @@ def room(request, room_name, username):
 
 def create_room(request):
 	room_name = request.GET.get('room_name')
+	username = request.GET.get('username')
 	if len(Room.objects.filter(title=room_name))==0:
 		r = Room()
 		r.title = room_name
 		r.save()
+	url = "/chat/" + room_name + "/" + username
+	return redirect(url)
