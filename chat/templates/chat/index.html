@@ -172,8 +172,7 @@
                             Select a room
                         </option> 
                         {% for room in rooms %}
-                            <option value="{{ room.id }}">{{ room.id }}</option>
-                        {% empty %}
+                            <option value="{{ room.id }}">{{ room }}</option>
                         {% endfor %}
                         <option value="Default">Default</option>
                         <option value="CREATE_NEW_ROOM">Create a new room</option>
