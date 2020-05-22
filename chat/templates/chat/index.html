@@ -238,7 +238,7 @@
                 $.ajax({
                    url: '/chat/create_room/',
                    data: {
-                    'room_name': room_name,
+                    'room_name': $(room_name),
                     'username': $("#username-input").val()
                     },
                    type: 'get',
