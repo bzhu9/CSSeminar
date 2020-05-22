@@ -349,6 +349,10 @@
         const username = document.getElementById('username').value;
 
         var messageArea = document.querySelector('#messageArea');
+        var colors = [
+            '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+            '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+        ];
         
         var protocol = '';
         if (window.location.protocol === 'https:') {
@@ -373,8 +377,17 @@
 
                 // new style
                 var messageElement = document.createElement('li');
+                var username = data['username'];
+
+                var avatarElement = document.createElement('i');
+                var avatarText = document.createTextNode(username[0]);
+                avatarElement.appendChild(avatarText);
+                avatarElement.style['background-color'] = getAvatarColor(username);
+
+                messageElement.appendChild(avatarElement);
+
                 var usernameElement = document.createElement('b');
-                var usernameText = document.createTextNode(data['username']);
+                var usernameText = document.createTextNode(username);
                 usernameElement.appendChild(usernameText);
                 messageElement.appendChild(usernameElement);
                 var textElement = document.createElement('div');
@@ -386,6 +399,15 @@
                 messageArea.scrollTop = messageArea.scrollHeight;
             }
         };
+
+        function getAvatarColor(messageSender) {
+            var hash = 0;
+            for (var i = 0; i < messageSender.length; i++) {
+                hash = 31 * hash + messageSender.charCodeAt(i);
+            }
+            var index = Math.abs(hash % colors.length);
+            return colors[index];
+        }
 
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
