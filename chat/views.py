@@ -20,4 +20,3 @@ def create_room(request):
 		r = Room()
 		r.title = room_name
 		r.save()
-	return redirect(reverse("index"))
