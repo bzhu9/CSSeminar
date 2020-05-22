@@ -26,7 +26,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
 	async def connect(self):
 		self.room_name = self.scope['url_route']['kwargs']['room_name']
-		self.username = self.scope['url_route']['kwargs']['username']
 		self.room_group_name = 'chat_%s' % self.room_name
 		# self.scope["session"]["seed"] = random.randint(1, 1000)
 		# await print(self.channel_layer.group_channels(room_group_name))
