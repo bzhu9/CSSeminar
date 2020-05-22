@@ -322,7 +322,6 @@
           <ul id="messageArea">
       
           </ul>
-          <form id="messageForm" name="messageForm" nameForm="messageForm">
             <div class="form-group">
               <div class="input-group clearfix">
                 <input type="text" id="chat-message-input" placeholder="Type a message... "
@@ -330,7 +329,6 @@
                 <button id="chat-message-submit" type="submit" class="primary">Send</button>
               </div>
             </div>
-          </form>
         </div>
     </div>
     <!-- <p class=room-occupents>
@@ -371,12 +369,12 @@
             }
             else if (data.msg_type=="message"){
                 var message = data['message'];
-                document.querySelector('#chat-log').value += (message + '\n');
+                // document.querySelector('#chat-log').value += (message + '\n');
 
                 // new style
                 var messageElement = document.createElement('li');
-                var usernameElement = document.create('span');
-                var usernameText = data['username'];
+                var usernameElement = document.createElement('b');
+                var usernameText = document.createTextNode(data['username']);
                 usernameElement.appendChild(usernameText);
                 messageElement.appendChild(usernameElement);
                 var textElement = document.createElement('div');

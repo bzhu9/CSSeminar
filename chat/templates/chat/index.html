@@ -161,7 +161,6 @@
     <div id="username-page">
         <div class="username-page-container">
           <h1 class="title">Welcome to Zhu Chats</h1>
-          <form id="usernameForm" name="usernameForm">
             <div class="form-group">
               <input type="text" id="username-input" placeholder="Username" autocomplete="off" class="form-control" />
             </div>
@@ -174,7 +173,7 @@
                         {% for room in rooms %}
                             <option value="{{ room }}">{{ room }}</option>
                         {% endfor %}
-                        <!-- <option value="CREATE_NEW_ROOM">Create a new room</option> -->
+                        <option value="CREATE_NEW_ROOM">Create a new room</option>
                     </select>
               <!-- <input type="text" id="room-id" value="lobby" placeholder="Room ID" autocomplete="off" class="form-control" /> -->
             </div>
@@ -184,7 +183,6 @@
             <div class="form-group">
               <button type="submit" id="page-submit" class="accent username-submit">Start Chatting</button>
             </div>
-          </form>
         </div>
       </div>
     <!-- <ul class="rooms">
@@ -209,17 +207,17 @@
         //     }
         // };
 
-        // $("select").change(function()  {
-        //     // the  last element will always be creating a new room
-        //     if (roomSelect.selectedIndex == roomSelect.length-1) {
-        //         newRoom.classList.remove('hidden');
-        //         newRoom.classList.add('form-control');
-        //     }
-        //     else {
-        //         newRoom.classList.add('hidden');
-        //         newRoom.classList.remove('form-control');
-        //     }
-        // });
+        $("select").change(function()  {
+            // the  last element will always be creating a new room
+            if (roomSelect.selectedIndex == roomSelect.length-1) {
+                newRoom.classList.remove('hidden');
+                newRoom.classList.add('form-control');
+            }
+            else {
+                newRoom.classList.add('hidden');
+                newRoom.classList.remove('form-control');
+            }
+        });
 
         // document.querySelector('#page-submit').onclick = function(e) {
         //     var roomName = document.querySelector('#room-name-input').value;
@@ -228,24 +226,24 @@
         $(function () {
             $('#page-submit').click(function () {
                 var room_name;
-                // if (roomSelect.selectedIndex == roomSelect.length-1){
-                //     room_name = $("#new-room").val();
-                // }
-                // else
-                room_name = roomSelect.options[roomSelect.selectedIndex].value;
+                if (roomSelect.selectedIndex == roomSelect.length-1){
+                    room_name = $("#new-room").val();
+                }
+                else
+                    room_name = roomSelect.options[roomSelect.selectedIndex].value;
                 console.log(room_name);
                 alert (room_name);
                 $.ajax({
                    url: '/chat/create_room/',
                    data: {
-                    'room_name': $(room_name),
+                    'room_name': room_name,
                     'username': $("#username-input").val()
                     },
                    type: 'get',
                    cache: false,
                    success: function (data) {
-                      // window.location.pathname = '/chat/' + room_name + '/' + $("#username-input").val();
-                      console.log("success");
+                      window.location.pathname = '/chat/' + room_name + '/' + $("#username-input").val();
+                      // console.log("success");
                    }
                 });
             });
