@@ -21,5 +21,5 @@ def create_room(request):
 		r = Room()
 		r.title = room_name
 		r.save()
-	url = "/chat/" + room_name + "/" + username
+	url = "/chat/" + room_name + "/" + username + "/"
 	return redirect(url)
