@@ -15,7 +15,7 @@
     {{ room_name|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
+        const username = JSON.parse(document.getElementById('username').textContent);
         var protocol = '';
         if (window.location.protocol === 'https:') {
             protocol = 'wss:';
@@ -52,7 +52,7 @@
 
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
+            const message = username + messageInputDom.value;
             chatSocket.send(JSON.stringify({
                 'message': message
             }));
