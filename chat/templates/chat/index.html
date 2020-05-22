@@ -230,10 +230,13 @@
         $(function () {
             $('#page-submit').click(function () {
                 var room_name;
-                if (roomSelect.selectedIndex == roomSelect.length-1)
+                if (roomSelect.selectedIndex == roomSelect.length-1){
                     room_name = $("#new-room").val();
+                    alert(room_name);
+                }
                 else
                     room_name = roomSelect.options[roomSelect.selectedIndex].value;
+                console.log(room_name)
                 $.ajax({
                    url: '/chat/create_room/',
                    data: {
