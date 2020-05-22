@@ -234,6 +234,7 @@
                 // else
                 room_name = roomSelect.options[roomSelect.selectedIndex].value;
                 console.log(room_name);
+                alert (room_name);
                 $.ajax({
                    url: '/chat/create_room/',
                    data: {
