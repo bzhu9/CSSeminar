@@ -132,6 +132,22 @@ button.accent {
   margin-top: 10px;
 }
 
+select {
+  width: 100%;
+  max-width: 500px;
+  display: inline-block;
+  margin-top: 42px;
+  vertical-align: middle;
+  position: relative;
+  padding: 35px 55px 35px;
+  margin: 0 auto;
+  padding-left: 10px;
+  outline: none;
+  font-weight: 400;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
 
 #chat-page {
   position: relative;
