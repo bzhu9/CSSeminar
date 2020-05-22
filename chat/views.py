@@ -2,12 +2,15 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Room
+import random
 
 def index(request):
 	rooms = Room.objects.order_by("title")
 	return render(request, 'chat/index.html', {"rooms":rooms})
 
 def room(request, room_name, username):
+	if not username:
+		username="guest" + random.randint(10000)
 	return render(request, 'chat/room.html', {
 		'room_name': room_name,
 		'username': username
