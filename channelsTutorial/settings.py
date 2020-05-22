@@ -102,7 +102,7 @@ DATABASES = {
 CONN_MAX_AGE = 0
 
 db_from_env = dj_database_url.config(conn_max_age=0)
-# DATABASES['default'].update(db_from_env)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
