@@ -232,7 +232,8 @@
                 //     room_name = $("#new-room").val();
                 // }
                 // else
-                    room_name = roomSelect.options[roomSelect.selectedIndex].value;
+                room_name = roomSelect.options[roomSelect.selectedIndex].value;
+                console.log(room_name);
                 $.ajax({
                    url: '/chat/create_room/',
                    data: {
